@@ -1,1 +1,1 @@
-include ':app', ':Zhangsx20190102'
+include ':app', ':Zhangsx20190102', ':Circlemove', ':Circle'

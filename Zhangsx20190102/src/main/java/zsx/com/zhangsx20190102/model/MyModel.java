@@ -20,8 +20,8 @@ public class MyModel implements MyContract.MyModel {
     private ProsBean proBean;
 
     @Override
-    public void Pro(HashMap<String, String> map, String str, final RequestCallBack requestCallBack) {
-      OkhttpUtils.getmInstanse().doPost(ProApi.PRO_API, map, new OkhttpCallBack() {
+    public void Pro(HashMap<String, String> map, String str,Class cls, final RequestCallBack requestCallBack) {
+      OkhttpUtils.getmInstanse().doPost(str, map,cls, new OkhttpCallBack() {
             @Override
             public void onFair(String msg) {
                 if (requestCallBack!=null){
@@ -38,6 +38,7 @@ public class MyModel implements MyContract.MyModel {
             public void onsuccess(String result) {
                 if (!TextUtils.isEmpty(result)){
                     parResult(result,requestCallBack);
+                   // proBean = new Gson().fromJson(result, ProsBean.class);
                 }
             }
         });

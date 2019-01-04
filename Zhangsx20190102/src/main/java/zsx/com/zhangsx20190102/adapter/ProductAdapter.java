@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import zsx.com.zhangsx20190102.R;
@@ -19,11 +20,11 @@ import zsx.com.zhangsx20190102.bean.ProsBean;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductVH> {
    private Context context;
-    private List<ProsBean.Datas.MiaoSha.Lists> list;
+    private List<ProsBean.DataBean.MiaoshaBean.ListBean> list;
 
-    public ProductAdapter(Context context, List<ProsBean.Datas.MiaoSha.Lists> list) {
+    public ProductAdapter(Context context) {
         this.context = context;
-        this.list = list;
+        this.list = new ArrayList<>();
     }
 
     @NonNull
@@ -38,9 +39,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull final ProductAdapter.ProductVH productVH, int i) {
 
-        ProsBean.Datas.MiaoSha.Lists product = list.get(i);
-        productVH.title.setText(product.title);
-        String images = product.images;
+        ProsBean.DataBean.MiaoshaBean.ListBean product = list.get(i);
+        productVH.title.setText(product.getTitle());
+        String images = product.getImages();
         String[] imagA= images.split("\\|");
         if (imagA !=null&&imagA.length >0){
             Glide.with(context).load(imagA[0]).into(productVH.iv);
@@ -72,12 +73,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return list==null? 0 :list.size();
     }
   //添加数据
-    public void setList(List<ProsBean.Datas.MiaoSha.Lists> data) {
+    public void setList(List<ProsBean.DataBean.MiaoshaBean.ListBean> data) {
         if (data!=null){
             this.list=data;
         }
         notifyDataSetChanged();
     }
+
+    public void delete(int pos) {
+
+    }
+
 
     class ProductVH extends RecyclerView.ViewHolder{
         private ImageView iv;

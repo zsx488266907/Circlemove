@@ -41,53 +41,8 @@ public class OkhttpUtils {
                 return mInstanse;
             }
 
-    public void doGet(String url,HashMap<String, String> parmas, final OkhttpCallBack requestCallback) {
 
-        StringBuilder p = new StringBuilder();
-        if (parmas!=null&&parmas.size()>0){
-            for (Map.Entry<String, String> map : parmas.entrySet()) {
-
-                p.append(map.getKey()).append("=").append(map.getValue()).append("&");
-            }
-
-
-        }
-        Request request = new Request.Builder().url(url+"?"+p.toString())
-                .get().build();
-
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                if (requestCallback != null) {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            requestCallback.onFair("网络异常");
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                final String result = response.body().string();
-                if (requestCallback != null) {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            requestCallback.onsuccess(result);
-
-                        }
-                    });
-                }
-            }
-        });
-
-
-    }
-
-
-            public  void  doPost(String uri, HashMap<String,String> par, final OkhttpCallBack okhttpCallBack){
+            public  void  doPost(String uri, HashMap<String,String> par,Class cls, final OkhttpCallBack okhttpCallBack){
 
                 FormBody.Builder builder = new FormBody.Builder();
                 for (Map.Entry<String, String> map : par.entrySet()) {

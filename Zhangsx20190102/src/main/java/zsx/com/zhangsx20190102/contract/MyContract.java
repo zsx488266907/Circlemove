@@ -8,15 +8,15 @@ import zsx.com.zhangsx20190102.net.RequestCallBack;
 
 public interface MyContract {
     public  abstract class Mypresenter{
-        public abstract void pro(HashMap<String,String> map);
+        public abstract void pro(HashMap<String,String> map,String str,Class cls);
 
     }
 
     public interface MyModel{
-        void Pro(HashMap<String, String> map, String str, RequestCallBack requestCallBack);
+        void Pro(HashMap<String, String> map, String str, Class cls,RequestCallBack requestCallBack);
     }
     public  interface  MyView{
-        public void success(ProsBean proBean);
+        public void success(Object proBean);
         public void fail(String str);
     }
 }

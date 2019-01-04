@@ -13,26 +13,31 @@ public class Mypresenter extends MyContract.Mypresenter {
   private MyModel myModel;
   private MyContract.MyView myView;
 
-    public Mypresenter(MyContract.MyView myView){
+    /*public Mypresenter(MyContract.MyView myView){
         myModel=   new MyModel();
         this.myView = myView;
+    }*/
+
+    public Mypresenter(MyContract.MyView myView) {
+       myModel=  new MyModel();
+        this.myView = myView;
     }
+
     @Override
-    public void pro(HashMap<String, String> map) {
-           myModel.Pro(map, ProApi.PRO_API, new RequestCallBack() {
+    public void pro(HashMap<String, String> map,String str,Class cls) {
+           myModel.Pro(map, str,cls, new RequestCallBack() {
                @Override
                public void onfair(String msg) {
                     myView.fail(msg);
                }
 
                @Override
-               public void onsuccess(ProsBean proBean) {
+               public void onsuccess(Object proBean) {
                   myView.success(proBean);
                }
            });
     }
     public void destroy(){
-
         if (myView!=null){
             myView = null;
         }
